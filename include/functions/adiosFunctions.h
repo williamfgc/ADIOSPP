@@ -21,9 +21,8 @@
   #include "mpidummy.h"
 #endif
 
-
 #include "core/Group.h"
-
+#include "functions/adiosTemplates.h"
 
 namespace adios
 {
@@ -139,6 +138,22 @@ void SetTransformsHelper( const std::vector<std::string>& transformNames, std::v
  * @return true: is an alias, false: is not
  */
 bool IsTypeAlias( const std::string type, const std::set<std::string>& types );
+
+/**
+ * Lookup in aliases if "type" is one of the aliases for a certain type, (e.g. if type = integer is an accepted alias for "int", returning true)
+ * @param type input to be compared with an alias
+ * @param aliases map of aliases to a certain type, from Support.h
+ * @return true: is an alias, false: is not
+ */
+template<class T>
+bool IsTypeAlias
+(
+    const std::string type,
+    const std::map<std::string, std::set<std::string>>& aliases
+)
+{
+    return IsTypeAlias( type, aliases.at(GetType<T>()) );
+}
 
 
 /**

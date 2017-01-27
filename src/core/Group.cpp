@@ -90,67 +90,67 @@ Var Group::DefineVariable( const std::string variableName, const std::string typ
 
     const int globalBoundsIndex = SetGlobalBounds( globalDimensionsCSV, globalOffsetsCSV );
 
-    if( IsTypeAlias( type, Support::DatatypesAliases.at("char") ) == true )
+    if( IsTypeAlias<char>( type, Support::DatatypesAliases ) )
     {
         m_Char.push_back( Variable<char>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false } );
         m_Variables[variableName] = std::make_pair( type, m_Char.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned char") ) == true )
+    else if( IsTypeAlias<unsigned char>( type, Support::DatatypesAliases ) )
     {
         m_UChar.push_back( Variable<unsigned char>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_UChar.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("short") ) == true )
+    else if( IsTypeAlias<short>( type, Support::DatatypesAliases ) )
     {
         m_Short.push_back( Variable<short>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_Short.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned short") ) == true )
+    else if( IsTypeAlias<unsigned short>( type, Support::DatatypesAliases ) )
     {
         m_UShort.push_back( Variable<unsigned short>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_UShort.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("int") ) == true )
+    else if( IsTypeAlias<int>( type, Support::DatatypesAliases ) )
     {
         m_Int.push_back( Variable<int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_Int.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned int") ) == true )
+    else if( IsTypeAlias<unsigned int>( type, Support::DatatypesAliases ) )
     {
         m_UInt.push_back( Variable<unsigned int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_UInt.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long int") ) == true )
+    else if( IsTypeAlias<long int>( type, Support::DatatypesAliases ) )
     {
         m_LInt.push_back( Variable<long int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_LInt.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long int") ) == true )
+    else if( IsTypeAlias<unsigned long int>( type, Support::DatatypesAliases ) )
     {
         m_ULInt.push_back( Variable<unsigned long int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_ULInt.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long long int") ) == true )
+    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long long int") ) )
     {
         m_LLInt.push_back( Variable<long long int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_LLInt.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long long int") ) == true )
+    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long long int") ) )
     {
         m_ULLInt.push_back( Variable<unsigned long long int>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_ULLInt.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("float") ) == true )
+    else if( IsTypeAlias<float>( type, Support::DatatypesAliases ) )
     {
         m_Float.push_back( Variable<float>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_Float.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("double") ) == true )
+    else if( IsTypeAlias<double>( type, Support::DatatypesAliases ) )
     {
         m_Double.push_back( Variable<double>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false  } );
         m_Variables[variableName] = std::make_pair( type, m_Double.size()-1 );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long double") ) == true )
+    else if( IsTypeAlias<long double>( type, Support::DatatypesAliases ) )
     {
         m_LDouble.push_back( Variable<long double>{ dimensionsCSV, nullptr, globalBoundsIndex, transforms, parameters, false } );
         m_Variables[variableName] = std::make_pair( type, m_LDouble.size()-1 );
@@ -177,62 +177,63 @@ void Group::AddTransform( const std::string variableName, Transform& transform, 
     const std::string type( itVariable->second.first );
     const unsigned int index = itVariable->second.second;
 
-    if( IsTypeAlias( type, Support::DatatypesAliases.at("char") ) == true )
+    if( IsTypeAlias<char>( type, Support::DatatypesAliases ) )
     {
         m_Char[index].Transforms.push_back( &transform );
         m_Char[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned char") ) == true )
+    else if( IsTypeAlias<unsigned char>( type, Support::DatatypesAliases ) )
     {
         m_UChar[index].Transforms.push_back( &transform );
         m_UChar[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("short") ) == true )
+    else if( IsTypeAlias<short>( type, Support::DatatypesAliases ) )
     {
         m_Short[index].Transforms.push_back( &transform );
         m_Short[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned short") ) == true )
+    else if( IsTypeAlias<unsigned short>( type, Support::DatatypesAliases ) )
     {
         m_UShort[index].Transforms.push_back( &transform );
         m_UShort[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("int") ) == true )
+    else if( IsTypeAlias<int>( type, Support::DatatypesAliases ) )
     {
         m_Int[index].Transforms.push_back( &transform );
         m_Int[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned int") ) == true )
+    else if( IsTypeAlias<unsigned int>( type, Support::DatatypesAliases ) )
     {
         m_UInt[index].Transforms.push_back( &transform );
         m_UInt[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long int") ) == true )
+    else if( IsTypeAlias<long int>( type, Support::DatatypesAliases ) )
     {
         m_LInt[index].Transforms.push_back( &transform );
         m_LInt[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long int") ) == true )
+    else if( IsTypeAlias<unsigned long int>( type, Support::DatatypesAliases ) )
     {
         m_ULInt[index].Transforms.push_back( &transform );
         m_ULInt[index].Parameters.push_back( parameter );
     }
+    //?? long long int missing??
     else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long long int") ) == true )
     {
         m_ULLInt[index].Transforms.push_back( &transform );
         m_ULLInt[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("float") ) == true )
+    else if( IsTypeAlias<float>( type, Support::DatatypesAliases ) )
     {
         m_Float[index].Transforms.push_back( &transform );
         m_Float[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("double") ) == true )
+    else if( IsTypeAlias<double>( type, Support::DatatypesAliases ) )
     {
         m_Double[index].Transforms.push_back( &transform );
         m_Double[index].Parameters.push_back( parameter );
     }
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long double") ) == true )
+    else if( IsTypeAlias<long double>( type, Support::DatatypesAliases ) )
     {
         m_LDouble[index].Transforms.push_back( &transform );
         m_LDouble[index].Parameters.push_back( parameter );
@@ -287,22 +288,22 @@ unsigned long long int Group::GetIntVariableValue( const std::string variableNam
     const unsigned int index = m_Variables.at( variableName ).second;
     long long int value = -1;
 
-    if( IsTypeAlias( type, Support::DatatypesAliases.at("short") ) == true )
+    if( IsTypeAlias<short>( type, Support::DatatypesAliases ) )
         value = *( m_Short[index].Values );
 
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned short") ) == true )
+    else if( IsTypeAlias<unsigned short>( type, Support::DatatypesAliases ) )
         value = *( m_UShort[index].Values );
 
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("int") ) == true )
+    else if( IsTypeAlias<int>( type, Support::DatatypesAliases ) )
         value = *( m_Int[index].Values );
 
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned int") ) == true )
+    else if( IsTypeAlias<unsigned int>( type, Support::DatatypesAliases) )
         value = *( m_UInt[index].Values );
 
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("long int") ) == true )
+    else if( IsTypeAlias<long int>( type, Support::DatatypesAliases ) )
         value = *( m_LInt[index].Values );
 
-    else if( IsTypeAlias( type, Support::DatatypesAliases.at("unsigned long int") ) == true )
+    else if( IsTypeAlias<unsigned long int>( type, Support::DatatypesAliases ) )
         value = *( m_ULInt[index].Values );
 
     else if( IsTypeAlias( type, Support::DatatypesAliases.at("long long int") ) == true )
