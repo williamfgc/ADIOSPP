@@ -7,6 +7,7 @@
 
 
 #include "core/Support.h"
+#include "functions/adiosTemplates.h"
 
 
 namespace adios
@@ -31,7 +32,7 @@ const std::set<std::string> Support::Transforms{
 };
 
 
-const std::map<std::string, std::set<std::string> > Support::Datatypes
+const std::map<std::string, std::set<std::string>> Support::Datatypes
 {
     { "C++",
         {
@@ -85,13 +86,14 @@ const std::map<std::string, std::set<std::string> > Support::Datatypes
 };
 
 
-const std::map<std::string, std::set<std::string> > Support::DatatypesAliases
+const std::map<std::string, std::set<std::string>> Support::DatatypesAliases
 {
-    { "char",           { "char", "character" }  },
+    // note: could use more of GetType for the canonical names
+    { GetType<char>(),  { GetType<char>(), "character" }  },
     { "unsigned char",  { "unsigned char", "unsigned character" }  },
     { "short",          { "short", "integer*2" } },
     { "unsigned short", { "unsigned short" }  },
-    { "int",                    { "int", "integer" } },
+    { GetType<int>(),   { GetType<int>(), "integer" } },
     { "unsigned int",           { "unsigned int", "unsigned integer" } },
     { "long int",               { "long int", "long", "long integer" } },
     { "unsigned long int",      { "unsigned long int", "unsigned long", "unsigned long integer" } },

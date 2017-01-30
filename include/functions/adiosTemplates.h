@@ -8,52 +8,30 @@
 #ifndef ADIOSTEMPLATES_H_
 #define ADIOSTEMPLATES_H_
 
+#include <cstdint>
 
 namespace adios
 {
 
-template< class T >
-std::string GetType( ) noexcept
+template<class T>
+inline std::string GetType() noexcept
 {
-    std::string type;
-
-    if( std::is_same<T,char>::value )
-        type = "char";
-
-    else if( std::is_same<T,short>::value )
-        type = "short";
-
-    else if( std::is_same<T,int>::value )
-        type = "int";
-
-    else if( std::is_same<T,long int>::value )
-        type = "long int";
-
-    else if( std::is_same<T,unsigned char>::value )
-        type = "unsigned char";
-
-    else if( std::is_same<T,unsigned short>::value )
-        type = "unsigned short";
-
-    else if( std::is_same<T,unsigned int>::value )
-        type = "unsigned int";
-
-    else if( std::is_same<T,unsigned long int>::value )
-        type = "unsigned long int";
-
-    else if( std::is_same<T,float>::value )
-        type = "float";
-
-    else if( std::is_same<T,double>::value )
-        type = "double";
-
-    else if( std::is_same<T,long double>::value )
-        type = "long double";
-
-    return type;
+    return "";
 }
 
+// specializations
 
+template<> inline std::string GetType<char>()          noexcept { return "char"; }
+template<> inline std::string GetType<unsigned char>() noexcept { return "unsigned char"; }
+template<> inline std::string GetType<int16_t>()       noexcept { return "short"; }
+template<> inline std::string GetType<uint16_t>()      noexcept { return "unsigned short"; }
+template<> inline std::string GetType<int32_t>()       noexcept { return "int"; }
+template<> inline std::string GetType<uint32_t>()      noexcept { return "unsigned int"; }
+template<> inline std::string GetType<int64_t>()       noexcept { return "long int"; }
+template<> inline std::string GetType<uint64_t>()      noexcept { return "unsigned long int"; }
+template<> inline std::string GetType<float>()         noexcept { return "float"; }
+template<> inline std::string GetType<double>()        noexcept { return "double"; }
+template<> inline std::string GetType<long double>()   noexcept { return "long double"; }
 
 } //end namespace
 
